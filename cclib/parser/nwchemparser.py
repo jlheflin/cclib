@@ -283,7 +283,10 @@ class NWChem(logfileparser.Logfile):
                 self.symlabels = []
             for _ in range(self.pg_order):
                 line = next(inputfile)
-                self.symlabels.append(self.normalisesym(line.split()[0]))
+                for line in lines:
+                    split_line = line.split()
+                    if split_line:
+                        self.symlabels.append(self.normalisesym(split_line[0]))
 
         # This section contains general parameters for Hartree-Fock calculations,
         # which do not contain the 'General Information' section like most jobs.
